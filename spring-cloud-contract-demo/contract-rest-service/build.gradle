@@ -1,16 +1,22 @@
 buildscript {
-	ext { springBootVersion = '2.1.6.RELEASE' }
+	ext {
+		springBootVersion = '2.1.6.RELEASE'
+		verifierVersion = '2.1.1.RELEASE'
+	}
 	repositories { mavenCentral() }
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${verifierVersion}"
 	}
 }
 
+apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'spring-cloud-contract'
 
 
 sourceCompatibility = 1.8
@@ -21,7 +27,7 @@ repositories { mavenCentral() }
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('org.springframework.cloud:spring-cloud-starter-contract-stub-runner')
+	testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')
 }
 
 dependencyManagement {
@@ -30,3 +36,9 @@ dependencyManagement {
 	}
 }
 
+contracts {
+	packageWithBaseClasses = 'hello'
+	baseClassMappings {
+		baseClassMapping(".*hello.*", "hello.BaseTestClass")
+	}
+}
