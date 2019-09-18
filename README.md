@@ -32,7 +32,7 @@ The consumer creates and maintains a contract. Both the consumer and provider ve
 
 ##
 * [Spring Cloud Contract](docs/Spring-Cloud-Contract.md)
-* [Pact](docs/Spring-Cloud-Contract.md)
+* [Pact](docs/Pact.md)
 
 
 ## Resources
