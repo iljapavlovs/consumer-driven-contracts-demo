@@ -41,6 +41,9 @@ The consumer creates and maintains a contract. Both the consumer and provider ve
 * [All Examples](https://github.com/spring-cloud-samples/spring-cloud-contract-samples)
 * [Spring Cloud Contract Workshops](https://github.com/spring-cloud-samples/spring-cloud-contract-samples/blob/master/docs/workshops.adoc)
 * [Consumer-Driven Contracts with Pact, Feign and Spring Data REST](https://reflectoring.io/consumer-driven-contracts-with-pact-feign-spring-data-rest/)
+* [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html)
+* [Pact Guide Github](https://github.com/steam0/pact-guide#pact-demo-installation-and-testing-guide)
+* [Testing a Spring Message Producer and Consumer against a Contract with Pact](https://reflectoring.io/cdc-pact-messages/)
 
   
 

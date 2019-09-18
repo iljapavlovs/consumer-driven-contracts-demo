@@ -23,6 +23,8 @@ The following listing shows how to add the plugin, which should go in the `build
 ```
 3. Running `./mvnw clean install` automatically generates tests that verify the application compliance with the added contracts. By default, the tests get generated under `org.springframework.cloud.contract.verifier.tests.`
 
+> (When we run the build, the plugin automatically generates a test class named ContractVerifierTest that extends our BaseTestClass and puts it in `/target/generated-test-sources/contracts/`)
+
 As the implementation of the functionalities described by the contracts is not yet present, the tests fail.
 
 4. add the correct implementation of either handling HTTP requests or messages
@@ -59,7 +61,7 @@ You can now merge the changes, and you can **publish both the application and th
 
 ### On the Consumer Side
 
-You can use Spring Cloud Contract Stub Runner in the integration tests to get a running WireMock instance or messaging route that simulates the actual service.
+You can use Spring Cloud Contract **Stub Runner** in the integration tests to get a running WireMock instance or messaging route that simulates the actual service.
 
 To do so, add the dependency to Spring Cloud Contract Stub Runner, as the following example shows:
 
@@ -70,24 +72,27 @@ To do so, add the dependency to Spring Cloud Contract Stub Runner, as the follow
 </dependency>
 You can get the Producer-side stubs installed in your Maven repository in either of two ways:
 
-By checking out the Producer side repository and adding contracts and generating the stubs by running the following commands:
-
+* By checking out the Producer side repository and adding contracts and generating the stubs by running the following commands:
+```
 $ cd local-http-server-repo
 $ ./mvnw clean install -DskipTests
+```
 The tests are being skipped because the producer-side contract implementation is not in place yet, so the automatically-generated contract tests fail.
 
-By getting already-existing producer service stubs from a remote repository. To do so, pass the stub artifact IDs and artifact repository URL as Spring Cloud Contract Stub Runner properties, as the following example shows:
-
+* By getting already-existing producer service stubs from a remote repository. To do so, pass the stub artifact IDs and artifact repository URL as Spring Cloud Contract Stub Runner properties, as the following example shows:
+```
     stubrunner:
       ids: 'com.example:http-server-dsl:+:stubs:8080'
       repositoryRoot: https://repo.spring.io/libs-snapshot
+```
 Now you can annotate your test class with @AutoConfigureStubRunner. In the annotation, provide the group-id and artifact-id values for Spring Cloud Contract Stub Runner to run the collaborators' stubs for you, as the following example shows:
-
+```
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.NONE)
 @AutoConfigureStubRunner(ids = {"com.example:http-server-dsl:+:stubs:6565"},
         stubsMode = StubRunnerProperties.StubsMode.LOCAL)
 public class LoanApplicationServiceTests {
+```
 Use the REMOTE stubsMode when downloading stubs from an online repository and LOCAL for offline work.
 
 Now, in your integration test, you can receive stubbed versions of HTTP responses or messages that are expected to be emitted by the collaborator service.

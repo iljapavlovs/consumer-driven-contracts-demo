@@ -2,3 +2,6 @@ rootProject.name = 'consumer-driven-contracts-demo'
 
 include 'spring-cloud-contract-demo:contract-rest-client'
 include 'spring-cloud-contract-demo:contract-rest-service'
+
+include 'pact-demo:pact-feign-consumer'
+include 'pact-demo:pact-spring-provider'
