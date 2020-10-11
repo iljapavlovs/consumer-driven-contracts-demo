@@ -45,5 +45,8 @@ The consumer creates and maintains a contract. Both the consumer and provider ve
 * [Pact Guide Github](https://github.com/steam0/pact-guide#pact-demo-installation-and-testing-guide)
 * [Testing a Spring Message Producer and Consumer against a Contract with Pact](https://reflectoring.io/cdc-pact-messages/)
 
+* [PACT Examples from Reflectoring](https://github.com/thombergs/code-examples/tree/master/pact)
+* [Spring Cloud Contract Examples from Reflectoring](https://github.com/thombergs/code-examples/tree/master/spring-cloud)
+
   
 
